@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final Project - Introduction of Data Analytics for Accounting</title>
+</head>
+<body>
+    <h1>Occupancy Salary, States, and the Likelihood of Automation</h1>
+    <h2>DAA Final Project - Hank Chen</h2>
+    <hr />
+    <h3>Executive Summary</h3>
+       <p>Using data provided by the US Bureau of Labor Statistics, this report to the Department of Labor analyzes how the probability of future automation, as well as state’s GDP, affect the average employee’s salary. While the Department of Labor is responsible for hundreds of different aspects in regard to labor and economics, we are focusing more on salaries since we know that this truly impacts everyone. More specifically as a young generation who is also in a pandemic that has reshaped how and where people work, we focused our analysis to evaluate salary based on state GDP as well as the probability of automation in the future for any given job. </p>
+       <p>Our data set is made up of multiple data sets from the United States’ Bureau of Labor and Statistics (BLS) and a data set derived from a 2017 research paper written by Frey, Osbourne, et. al. We believe that the Bureau of Labor Statistics has very high-quality data, and thus our data set is also of high quality. The Bureau has a good reputation of being impartial through their core values of accurate, objective, relevant and timely information. The data elements that we extracted from these data sets using SQL include occupation titles which were subsequently delineated into separate lines for different states, means, and medians of both hourly and annual wages, automation probability. We transformed the 2020 state GDP data into annual GDP data, as well as converted men’s and women’s median earnings into annual median earnings.</p>
+       <p>Using predictive analytics like regressions, we evaluated our data sets and created visualizations shown later to help communicate our findings. GDP has very little explanatory power on employee salary.</p>
+       <p>The probability of automation does have a negative correlation on salary level that is a significant explanatory factor. Those with a high probability of automation not only have smaller salaries ranging from $20,000-$60,000, but the almost guarantee of future automation will also cause decreases in hours or layoffs, providing these current employees with no job security or longevity currently. </p>
+       <p>While initial analytics showed that the probability of automation did have a negative correlation on salary levels, when compared to the average salary amounts, the wage gap was proportional given the differences in salary level. Thus, automation is not decreasing the gender wage gap and will require the department of labor to find other solutions. </p>
+       <p>The Covid-19 pandemic has changed how the world works. With automation being accelerated and employees working from other locations beyond the office, the continuous updating and analysis of data sets will be required to provide accurate, timely, and relevant data that is valuable to the Department of Labor.</p>
+    <h3>I.	BACKGROUND OVERVIEW </h3>
+       <p>The United States Department of Labor is an extremely important organization that impacts the lives of every working person. They administer laws that are designed to protect workers, businesses, and the economy. This includes laws about governing occupational safety and health, wage standards, unemployment benefits, reemployment services, and economic statistics. Their mission is “To foster, promote, and develop the welfare of the wage earners, job seekers, and retirees of the United States; improve working conditions; advance opportunities for profitable employment; and assure work-related benefits and rights.”</p>
+       <p>To deliver on their mission, the department of labor must collect extremely large amounts of data to make informed decisions. This data must be accurate, timely, and relevant. Thus, under the Department of Labor is the US Bureau of Labor Statistics. This is an organization made for the purpose of “measures labor market activity, working conditions, price changes, and productivity in the U.S. economy to support public and private decision making.” </p>  
+       <p>The core values that the Bureau of Labor Statistics (BLS) espouses make them rigorous about data analysis. The BLS sticks to the facts of the data and ensures the authenticity and reliability of the data. They also document the design and methods of their programs to provide complete transparency to the public. Data integrity guidelines, confidentiality pledges, and laws are also strictly followed by the BLS to make sure all responded data are “completely confidential and used for statistical purposes only”. All of these make the BLS data meet the Gold-standard: accurate, objective, relevant, timely, and accessible. In the meanwhile, the BLS also values the third-party input for their data – there are 3 customer advisory groups and 2 partnership groups that the BLS sponsor and belong to. The BLS also provides various options to answer customers’ questions and even has speakers available to talk to customers’ groups. The BLS also insists on innovation to ensure that the American people can be better served.</p>  
+    <h3>II.	OUR ROLE AND MOTIVATION </h3>
+       <p>The Department of Labor has many issues on their hands regarding employment, worker safety, wages, and much more. However, we decided to focus on a specific issue that impacts every one of us, salaries. As young professionals, we wanted to know what are going to be some forces that may impact salaries currently, as well as in the future.</p>
+       <p>Salaries are extremely important to the Department of Labor. Every employee in the United States hopes to have a salary that provides for all their needs. But along with good salaries, employees also want future job security. With the pandemic acceleration, the use of online work, automation, and the ability to work for different locations, these factors have changed the landscape for both employees and employers. Thus, there are now more relevant issues to consider for the Department of Labor beyond just salaries. </p>
+       <p>Given the accelerated change in the last 2 years, we wanted to investigate if the probability of automation, working location, and gender had significant impacts on salaries. These are all relevant and important topics for the Department of Labor to consider. The ability to identify the impact of these forces can allow both the government and corporations to make informed decisions for the future. </p>
+    <h3>III. IDENTIFY THE QUESTIONS</h3>
+       <h4>Question I: What is the effect of the probability of automation on salary level? </h4>
+       <h4>Hypothesis: The probability of automation will have a negative coordination effect on employee salaries.</h4>
+          <p>One question we will address is the effect of the probability of automation of a job on the yearly salary. Automation has been becoming more advanced in recent years, but the pandemic has also increased the value of automation. With this, we wanted to know if the probability of automation in future years has an impact on current salary amounts. We can use data analytics to compare the probability of automation, with the current yearly salary of multiple types of jobs. This will either show a relationship between the two variables for us to analyze or show that there is no relationship between the two.</p>
+       <h4>Question II: What is the effect of state GDP on salary level? </h4>
+       <h4>Hypothesis: State GDP and employee salary are positively correlated. </h4>
+          <p>Our second question is to evaluate the relationship between the state GDP and salary amount. Do similar jobs pay different salaries in different states? If so, is there a significant difference? With the introduction of remote work in many industries, it may be more beneficial to find a job in a different state that pays more and work remotely. We can run a regression to analyze if there is a significant relationship between the two variables. We can also use tableau to help present our findings, and show what states have the highest and lowest pay overall, and specifically for each type of job. With this knowledge, companies and employees can have a better knowledge of their job market around the nation. This could help balance out any wage gap, and promote better pay in some cases.</p>
+       <h4>Question III: What is the effect of the probability of automation on the gender salary gap?</h4>
+       <h4>Hypothesis: As the probability of automation increases, the gender salary gap decreases.</h4>
+          <p>Gender discrimination at work has always been a hot topic. According to a research center analysis of median hourly earnings of both full and part-time workers, women earned 84% of what men earned in 2020. Therefore, we hope to explore the connection between automation and gender and focus on whether automation could bring any effect on the gender salary gap. Hypothetically, we believe that as the probability of automation increases, the gender salary gap decreases. As the second question, it will be helpful to run a regression to analyze the correlation between the two variables. We can also use tableau for additional analysis to visualize the results. This could help companies or individuals to make decisions about improving automation or stepping into automation-related careers.</p>
+    <h3>IV.	MASTER THE DATA</h3>
+       <P>Our data set is made up of multiple data sets from the United States’ Bureau of Labor and Statistics (BLS) and a data set derived from a 2017 research paper written by Frey, Osbourne, et. al. The datasets include: </P>
+       <ol>
+           <li>BLS: <a href="https://www.bls.gov/oes/">May 2020 OEWS data</a>: Wages both by State and Occupation </li>
+           <li>Kaggle: <a href="https://www.kaggle.com/andrewmvd/occupation-salary-and-likelihood-of-automation">probability of automation data</a> compiled from Frey, Osbourne, 2017</li>
+           <li>BLS: <a href="https://www.bea.gov/data/gdp/gdp-state">State GDP</a></li>
+           <li>BLS: <a href="https://www.bls.gov/cps/cpsaat39.htm">2021 gender weekly salary by occupation</a></li>   
+        </ol>
+        <p>The paper was published in 2017 and more recent data was not readily available, however, we think data from 2017 is still relevant enough for the purposes of understanding automation probability now. We used May 2020 OEWS data because that is the most recent data released. We used the 2020 State GDP data to match the May 2020 OEWS data as closely as possible. The gender weekly salary by occupation data was published in Jan 2021 and reflects the whole year of 2020. Data from 2020 will give us some insight into the effects of the pandemic as well, as it did and will continue to have an economic impact.</p>
+        <p>The data elements that we extracted from these data sets using SQL include occupation titles which were subsequently delineated into separate lines for different states, means, and medians of both hourly and annual wages, automation probability. We transformed the 2020 state GDP data into annual GDP data, as well as converted men’s and women’s median earnings into annual median earnings.</p>
+        <img src="./assets/Figure 4-1.png" alt="Figure 4-1" />
+        <h4>Figure 4-1 <br /> (SQL to transform data. Some items were renamed to make writing the query easier.)</h4>
+        <P>After these transformations we created a new column for the gender wage gap, taking men’s median annual earnings per occupation and subtracting the women’s, as well as adding a separate table for average salary per state for comparison.</P>
+        <P>The important data elements to our research are the occupation titles, states, hourly and annual wage means and medians, automation probability, annual state GDP, and the gender wage gap.</P>
+        <P>We did run some summary statistics, which are shown below. We mainly looked at the mean, minimum, and maximum of each of the selected columns.</P>
+        <img src="./assets/ 4-2.png" alt="Figure 4-2" />
+        <h4>Figure 4-2</h4>
+        <p>We also utilized pivot tables to drill down into occupation and state, which gave us some more insight as well.</p>
+        <img src="./assets/Figure 4-3.png" alt="Figure 4-3" />
+        <h4>Figure 4-3</h4>
+        <img src="./assets/Figure 4-4.png" alt="Figure 4-4" />
+        <h4>Figure 4-4</h4>
+        <img src="./assets/Figure 4-5.png" alt="Figure 4-5" />
+        <h4>Figure 4-5</h4>
+        <p>The data taken from BLS was relatively clean, however, when we combined the data we ran into issues where some of the annual/hourly wage data and men/women median earnings were missing. We deleted any rows that had missing data, as we do not want to attempt to draw conclusions on incomplete data nor fill in data that might be erroneous ourselves. We initially started out with over 15,000 observations, and after deleting any rows with missing data we had 3,356 observations which are adequate for our research.</p>
+    <h3>V. PERFORM THE TEST PLAN</h3>
+    <p>The purpose of our three questions is to predict future trends; therefore, predictive analytics would be the appropriate procedure used to generate a model to determine what is likely to happen in the future. We choose regression analysis to perform the test plan.</p>
+        <h4>Regression Analysis</h4>
+        <h4>Question I: What is the effect of the probability of automation on salary level?<br />(regression: salary level = a(probability of automation) + b)</h4>
+        <p>On this question, we set the dependent variable (Y) as the mean hourly wage and the independent variable (X) as the profitability of automation. After we performed the regression test, we got the results as follows:</p>
+        <img src="./assets/Figure 5-1.png" alt="Figure 5-1" />
+        <h4>Figure 5-1</h4>
+        <ul>
+            <li>Multiple R: 66.66%, which means there is a moderately strong correlation between the two variables</li>
+            <li>R-square: given a set of mean hourly wages, 43.72% are explained by the probability of automation. And 56.28% of the variation is caused by factors other than the probability of automation.</li>
+            <li>The coefficient of the independent variable is negative, which suggests that as the probability of automation increases, the mean hourly wages tend to decrease.</li>
+            <li>P-value equals to 0, which suggests the probability of automation is a significant predictor of the salary level</li>
+        </ul>
+        <p>Our hypothesis was that the probability of automation will have a negative correlation to salaries. Based on the regression result, our hypothesis is correct.</p>
+        <h4>Question II: What is the effect of state GDP on salary level?<br />(regression: salary level = a(state GDP)+b)</h4>
+        <p>On this question, we set the dependent variable (Y) as the mean hourly wage, which is in dollars, and the independent variable (X) as State GDP, which is in millions. After we performed the regression test, we got the results as follows:</p>
+        <img src="./assets/Figure 5-2.png" alt="Figure 5-2" />
+        <h4>Figure 5-2</h4>
+        <ul>
+            <li>Multiple R: 7.9%, which means there is a weak correlation between these two variables</li>
+            <li>R-square is 0.6%, which suggests a low explanatory power for the independent variable. Given a set of mean hourly wages, only 0.06% of the variation mean hourly wage is explained by the state GDP. And 99.94% of the variation is caused by factors other than state GDP.</li>
+            <li>The coefficient of the independent variable is positive, which suggests that as State GDP increases, the salary level tends to increase.</li>
+            <li>P-value equals to 0, which suggests the State GDP is a significant predictor of the salary level, even if R-square is low here.</li>
+        </ul>
+        <p>For our hypothesis, we expect the State GDP and employee salary to be positively correlated, which is correct because the coefficient of the independent variable is positive.</p>
+        <p>There is a significant relationship between state GDP on salary level, but the explanatory power of salaries to state GDP is low.</p>
+        <h4>Question III: What is the effect of the probability of automation on the gender salary gap?<br />(regression: gender salary gap = a(probability of automation)+b</h4>
+        <p>On this question, we set the dependent variable (Y) as the gender salary gap and the independent variable (X) as the profitability of automation. After we performed the regression test, we got the results as follows:</p>
+        <img src="./assets/Figure 5-3.png" alt="Figure 5-3" />
+        <h4>Figure 5-3</h4>
+        <ul>
+            <li>Multiple R: 33.65%, which means there is a relatively weak correlation between these two variables</li>
+            <li>R-square: given a gender salary gap, only 11.33% is explained by the probability of automation. And 88.67% of the variation is caused by factors other than the probability of automation.</li>
+            <li>Standard error: 9540.82 is high, which might be caused by the limited sample size</li>
+            <li>The coefficient of the independent variable is negative, which suggests that as the profitability of automation increases, the gender salary gap tends to decrease.</li>
+            <li>P-value equals to 0, which suggests the profitability of automation is a significant predictor of the gender salary gap.</li>
+        </ul>
+        <p>We expect that as the probability of automation increases, the gender salary gap decreases in our hypothesis, and it is correct because the coefficient of the independent variable is negative.</p>
+        <h4>Tableau Visualization</h4>
+        <p>After running the regression, we put our data in Tableau to visualize our results. Here are our graphs:</p>
+        <h4>Question I: What is the effect of the probability of automation on salary level?</h4>
+        <img src="./assets/Figure 5-4.png" alt="Figure 5-4" />
+        <h4>Figure 5-4</h4>
+        <img src="./assets/Figure 5-5.png" alt="Figure 5-5" />
+        <h4>Figure 5-5</h4>
+        <p>For question one, we found that salary level is somewhat affected by probability of automation with a negative correlation. The higher probability of automation, the lower salary level is. When a place has a higher level of automation, the people living there have relatively lower salaries.</p>
+        <h4>Question II: What is the effect of state GDP on salary level?</h4>
+        <img src="./assets/Figure 5-6.png" alt="Figure 5-6" />
+        <h4>Figure 5-6</h4>
+        <img src="./assets/Figure 5-7.png" alt="Figure 5-7" />
+        <h4>Figure 5-7</h4>
+        <p>For question two, as we predict in our regression analysis, state GDP and average salary per state have a strong positive correlation. The graph on the right side shows where we used our original data and therefore generated thousands of circles. To make the graph more effectively communicated, we averaged the annual salary by each state to show only fifty circles on the graph on the left. This will lessen the complexity and confusion of the audience. That is why we use different variables to visualize the result in this question.</p>
+        <h4>Question III: What is the effect of the probability of automation on the gender salary gap?</h4>
+        <img src="./assets/Figure 5-8.png" alt="Figure 5-8" />
+        <h4>Figure 5-8</h4>
+        <img src="./assets/Figure 5-9.png" alt="Figure 5-9" />
+        <h4>Figure 5-9</h4>
+        <p>For question three, there is not a strong correlation as well. However, we noticed when the probability of automation goes beyond 0.7, the salary level drops significantly. Therefore, we suppose that employers seem to be more willing to pay the same amount of salary to men and women when their companies have a significant probability of automation.</p>
+    <h3>VI.	ADDRESS AND REFINE RESULTS</h3>
+    <p>Some limitations of our analysis would be the large reduction of our data set while cleaning it. As mentioned above, due to removing certain jobs due to missing data, we reduced our data pool from 15,000 to 3,300 jobs. This is still a significant amount. However, it is not the complete set and has a small chance of not representing the population.</p>
+    <p>It is a challenge to capture every single job, salary, probability of automation for every job in the United States. It is even more challenging to collect all of this data at the same time to have timely data. However, we still believe that our data set is representative of the entire population due to its size and diversity of location, and types of jobs.</p>
+    <p>A final limitation of our analysis is that we use a variable “Probability of Automation” that is an estimate. While we believe this estimate is of high quality, it is impossible to know for sure. Our data showed very different results near the extremes of the probability of automation. This provides us with more confidence that our analysis is reasonable using this variable. While estimates can be challenging to rely on, jobs with a 0-20% chance of automation, and jobs with an 80-100% chance of automation are easier to identify. While it can be challenging to estimate the chance of automation between 20-80%, most of our analysis is done by comparing these extremes of the probability of automation, not the middle ground as much. While the middle ground is still important, it also represents our findings. But even if one did not want to put weight on the results of the middle ground probabilities since it is an estimate, the results of the more assured extremes are in line.</p>
+    <p>We believe that the Bureau of Labor Statistics has very high-quality data, and thus our data set is also of high quality. The Bureau has a good reputation of being impartial through their core values of accurate, objective, relevant and timely information. They pride themselves on providing “just the facts”. Our analysis also is based on regressions and models that have no bias as well. Any variables created were simple calculations that were reasonable. Thus, our data is of high quality, and we are confident our results are representative of the real-world situation.</p>
+    <h3>VII. INSIGHTS AND RECOMMENDATIONS </h3>
+    <p>While our hypothesis about GDP and employee salary being positively correlated is correct, the more important insight to consider here is that the r-squared value of 0.006. While state GDP does have an impact on salary amounts, the explanatory value of GDP is very small. Understanding how GDP and salaries are connected is good, however, making a recommendation to the Department of Labor based on our results would be unproductive. There are better ways to impact employee salary levels.</p>
+        <h4>Recommendation : Support workers of jobs with high probabilities of automation.</h4>  
+        <p>In our analysis of how the probability of automation impacts mean salaries, there was a clear difference between the two extremes of automation. Those with 0-20% chance of automation in the future had significantly higher salaries than those within the 80-100% chance of automation. Those with a higher change of automation impacting their job not only earn less money, they also naturally will have less job security. Automation will either change their job, reduce their hours, or eliminate jobs. These people are already a vulnerable group, earning anywhere from $20,000-$60,000 a year. And this is not a population of people that can financially survive being laid off, or having their hours reduced. With an r-squared of 44%, the explanatory power of the probability of automation and salaries is significant. We recommend to the department of labor to anticipate the negative effects of automation and to identify solutions beforehand.</p>
+        <h4>Recommendation : Improve equal gender pay in all jobs and industries.</h4>
+        <p>If only looking at dollar amounts, the probability of automation does seem to have a negative correlation to the gender wage gap. However, a closer look into the analysis will tell a different story. The biggest differences again are on the two extremes of the probability of automation. Those with a low probability of automation have around a $5,000-$30,000 gender wage gap, while those with a higher probability of automation have a $0-$12,000 gender wage gap. While this gap has decreased in terms of dollars, the amounts with respect to their total pay tell a different story. While the gender wage gap is decreasing, this seems to only be due to the differences in base pay in jobs with different probabilities of automation. Thus, our hypothesis of automation decreasing the gender wage gap is incorrect. The department of labor will not be able to rely on automation to help decrease the wage gap and will need to find other solutions to this problem.</p>
+    <h3>VIII. EXTENSIONS</h3>
+    <p>Additional procedures will be required in the future. Continuously updating and adding data around jobs, salaries, and automation would be required to continue producing timely data and analysis that is more representative of the future. Obviously, this is an extremely large amount of data that will need to be collected. However, it is important to update the data to be representative of the time.</p>
+    <p>Another variable that would be extremely important to update would be the probability of automation. While our probability of automation is only from 2017, automation is extremely fast, and the pandemic has only accelerated the use of automation. An update of this variable would be extremely beneficial.</p>
+    <p>Some additional questions we would like to analyze would be if there is a relationship between salary and cost of living or effective tax rate? Since state GDP and salary are not correlated, we wanted to continue our analysis and find if there is a better variable that is representative of location that has a relationship with salary. With the introduction of covid and remote working these past 2 years, employees’ jobs and working locations have been separated. Is there a relationship between location and salary? And can this be compared to a relationship between location and automation?</p>
+    <pre>
+
+
+
+
+
+
+        <h4>Sources and References:</h4>
+        <ol>
+            <li><a href="https://www.bls.gov/bls/infohome.htm">https://www.bls.gov/bls/infohome.htm</a></li>
+            <li><a href="https://www.dol.gov">https://www.dol.gov</a></li>
+            <li><a href="https://www.kaggle.com/andrewmvd/occupation-salary-and-likelihood-of-automation">https://www.kaggle.com/andrewmvd/occupation-salary-and-likelihood-of-automation</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S0040162516302244">https://www.sciencedirect.com/science/article/pii/S0040162516302244</a></li>
+            <li><a href="https://www.pewresearch.org/fact-tank/2021/05/25/gender-pay-gap-facts/">https://www.pewresearch.org/fact-tank/2021/05/25/gender-pay-gap-facts/</a></li>
+            <li><a href="https://www.bls.gov/oes/">https://www.bls.gov/oes/</a><br />(Under “OEWS Data – May 2020 Data”, click on “State XLS” for state and occupation wages)</li>
+            <li><a href="https://www.kaggle.com/andrewmvd/occupation-salary-and-likelihood-of-automation">https://www.kaggle.com/andrewmvd/occupation-salary-and-likelihood-of-automation</a><br />(Use kaggle automation excel file for probability of automation by occupation)</li>
+            <li><a href="https://www.bea.gov/data/gdp/gdp-state">https://www.bea.gov/data/gdp/gdp-state</a><br />(For state GDP)</li>
+            <li><a href="https://www.bls.gov/cps/cpsaat39.htm">https://www.bls.gov/cps/cpsaat39.htm</a><br />(For gender weekly salary by occupation)</li>
+    </ol>
+    </pre>
+    </body>
+</html>
