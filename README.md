@@ -1,4 +1,4 @@
-# Data Analytics - Occupancy Salary States and the Likelihood of Automation
+# Data Analytics - Occupancy Salary, States, and the Likelihood of Automation
 
 Please view the project: [https://hanktchen18.github.io/DAA-Final-Project-Occupancy-Salary-States-and-the-Likelihood-of-Automation/](https://hanktchen18.github.io/Data-Analytics-for-Audit-Final-Project-Occupancy-Salary-States-and-the-Likelihood-of-Automation/)
 
